@@ -79,16 +79,6 @@ public class SystemMetricsService : ISystemMetricsService
         });
     }
 
-    //public async Task<int> GetTodaysTasksCountAsync()
-    //{
-    //    return await Task.Run(() =>
-    //    {
-    //        using var ts = new TaskService();
-    //        var today = DateTime.Today;
-    //        return ts.AllTasks.Count(t => t.Definition.RegistrationInfo.Date.Date == today);
-    //    });
-    //}
-
     public async Task<int> GetTodaysTasksCountAsync()
     {
         return await Task.Run(() =>

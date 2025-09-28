@@ -34,6 +34,16 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.AllowAnyOrigin()
+             .AllowAnyHeader()
+             .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddControllers();
 
 builder.Services.AddSingleton<ISystemMetricsService, SystemMetricsService>();
@@ -73,6 +83,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+
+app.UseCors("AllowFrontend");
 
 app.UseAuthentication(); 
 app.UseAuthorization();

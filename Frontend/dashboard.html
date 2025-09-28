@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats Dashboard</title>
+<link rel="stylesheet" href="css/dashboard.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Stats Dashboard</h1>
+    <button class="logout" id="logoutBtn">Logout</button>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h3>Task Overview</h3>
+        <p>Total Tasks: <span id="totalTasks">0</span></p>
+        <p>Completed Tasks: <span id="completedTasks">0</span></p>
+        <p>Pending Tasks: <span id="pendingTasks">0</span></p>
+        <p>Today's Tasks: <span id="todaysTasks">0</span></p>
+        <p>Completion Rate: <span id="completionRate">0%</span></p>
+        <canvas id="tasksChart"></canvas>
+    </div>
+    <div class="card">
+        <h3>System Metrics</h3>
+        <p>CPU Usage: <span id="cpuUsagePercent">0%</span></p>
+        <p>Memory Usage: <span id="memoryUsageMB">0 MB</span> / <span id="availableMemoryMB">0 MB</span> (<span id="memoryUsagePercent">0%</span>)</p>
+        <p>Process Count: <span id="processCount">0</span></p>
+        <p>Thread Count: <span id="threadCount">0</span></p>
+        <p>Working Set: <span id="workingSetMB">0 MB</span></p>
+        <p>Last Updated: <span id="lastUpdated">-</span></p>
+        <p>Machine Name: <span id="machineName">-</span></p>
+        <canvas id="cpuMemoryChart"></canvas>
+    </div>
+</div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>

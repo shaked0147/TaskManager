@@ -27,7 +27,7 @@ public class UserController : ControllerBase
         _jwtSettings = jwtOptions.Value;
     }
 
-    [HttpPost]
+    [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] User request)
     {
         try
