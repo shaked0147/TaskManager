@@ -46,3 +46,9 @@ canvas {
     border-radius: 6px;
     cursor: pointer;
 }
+
+#tasksChart {
+    max-width: 500px;   
+    max-height: 500px;  
+    margin: 0 auto;     
+}

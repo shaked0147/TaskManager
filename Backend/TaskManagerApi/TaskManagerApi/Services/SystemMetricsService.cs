@@ -13,13 +13,13 @@ public class SystemMetricsService : ISystemMetricsService
     {
         return await Task.Run(() =>
         {
-            // --- CPU Usage ---
+            // CPU Usage
             using var cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
             cpuCounter.NextValue();
             System.Threading.Thread.Sleep(500);
             float cpuUsage = cpuCounter.NextValue();
 
-            // --- Memory Usage ---
+            // Memory Usage 
             int availableMemoryMB = GetAvailableMemoryMB();
             int totalMemoryMB = GetTotalPhysicalMemoryMB();
             int usedMemoryMB = totalMemoryMB - availableMemoryMB;
@@ -27,7 +27,7 @@ public class SystemMetricsService : ISystemMetricsService
                 ? MathF.Round((usedMemoryMB * 100f) / totalMemoryMB, 1)
                 : 0f;
 
-            // --- Processes & Threads ---
+            // Processes & Threads
             var allProcesses = Process.GetProcesses();
             int processCount = allProcesses.Length;
             int threadCount = allProcesses.Sum(p => p.Threads.Count);
@@ -91,16 +91,15 @@ public class SystemMetricsService : ISystemMetricsService
             {
                 try
                 {
-                    var regDate = task.Definition?.RegistrationInfo?.Date;
-                    if (regDate != null && regDate?.Date == today)
+                    var lastRun = task.LastRunTime;
+                    if (lastRun != DateTime.MinValue && lastRun.Date == today)
                     {
                         count++;
                     }
                 }
                 catch
                 {
-                    // ignore invalid or system tasks
-                    continue;
+                    continue; // ignore system/invalid tasks
                 }
             }
 

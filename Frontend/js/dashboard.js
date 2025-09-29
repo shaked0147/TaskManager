@@ -1,3 +1,5 @@
+import { config } from './config.js';
+
 const token = localStorage.getItem('token');
 console.log(localStorage.getItem('token'));
 
@@ -43,7 +45,7 @@ const cpuMemoryChart = new Chart(cpuMemoryChartCtx, {
 
 async function fetchStats() {
     try {
-        const response = await fetch('https://localhost:7016/api/stats', {
+        const response = await fetch(`${config.apiBaseUrl}/stats`, {
             headers: { 'Authorization': 'Bearer ' + token }
         });
         if (!response.ok) throw new Error('Failed to fetch stats');
@@ -60,10 +62,10 @@ async function fetchStats() {
         tasksChart.update();
 
         const sys = data.systemMetrics;
-        document.getElementById('cpuUsagePercent').textContent = sys.cpuUsagePercent + '%';
+        document.getElementById('cpuUsagePercent').textContent = sys.cpuUsagePercent.toFixed(3) + '%';
         document.getElementById('memoryUsageMB').textContent = sys.memoryUsageMB;
         document.getElementById('availableMemoryMB').textContent = sys.availableMemoryMB;
-        document.getElementById('memoryUsagePercent').textContent = sys.memoryUsagePercent + '%';
+        document.getElementById('memoryUsagePercent').textContent = sys.memoryUsagePercent.toFixed(3) + '%';
         document.getElementById('processCount').textContent = sys.processCount;
         document.getElementById('threadCount').textContent = sys.threadCount;
         document.getElementById('workingSetMB').textContent = sys.workingSetMB;
